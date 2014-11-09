@@ -5,20 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',                   small_cover_url: '/tmp/futurama.jpg',   large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
-family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
-monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: 2)
-south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
 
-futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',                   small_cover_url: '/tmp/futurama.jpg',   large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
-family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
-monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: 2)
-south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
+comedies =    Category.create(name: "TV Comedies")
+dramas =      Category.create(name: "TV Dramas")
 
-futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',                   small_cover_url: '/tmp/futurama.jpg',   large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
-family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
-monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: 2)
-south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: 1)
+futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',                   small_cover_url: '/tmp/futurama.jpg',   large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
+family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
+monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
+south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
+
+futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',                   small_cover_url: '/tmp/futurama.jpg',   large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
+family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
+monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
+south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
+
+futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',                   small_cover_url: '/tmp/futurama.jpg',   large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
+family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
+monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
+south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
 
 joe = User.create(email: 'joe@example.com', password: 'password', full_name: "Joe Klein")
 andy = User.create(email: 'andy@example.com', password: "password", full_name: "Andy Carson")
