@@ -6,7 +6,7 @@
       .video_info.col-sm-3
         %header
           %h3= @video.title
-        %p= @video.average_rating
+        %p= "Rating: #{@video.average_rating}/5.0" 
         %p= @video.description
         .actions
           = link_to "+ My Queue", queue_items_path(video_id: @video.id), method: :post, class: 'btn btn-default'
@@ -17,7 +17,7 @@
         %fieldset
           .form-group
             %label Rate this video
-            = f.select :rating, options_for_select([5, 4, 3, 2, 1,].map { |e|  [pluralize(e, "Star")] })
+            = f.select :rating, options_for_video_reviews
           .form-group
             %label Write Review
             = f.text_area :content, rows: 6, class: "span6"

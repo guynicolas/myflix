@@ -14,7 +14,6 @@ class Video < ActiveRecord::Base
   end
 
   def average_rating
-    video_rating = (reviews.all.map(&:rating).sum.to_f / reviews.count).round(1)
-    "Rating: #{video_rating}/5.0" if reviews.any? 
+   reviews.average(:rating).round(1) if reviews.average(:rating)
   end 
 end  

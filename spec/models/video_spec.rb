@@ -63,12 +63,12 @@ describe "#average_rating" do
   it "returns one rating when the video has one review" do 
     futurama = Video.create(title: "Futurama", description: "Space travel")
     review = Review.create(rating: 4.0, content: "Good movie", video: futurama)
-    expect(futurama.average_rating).to eq("Rating: 4.0/5.0")
+    expect(futurama.average_rating).to eq(4)
   end 
   it "returns the average rating when the video has many reviews" do 
     futurama = Video.create(title: "Futurama", description: "Space travel")
     review1 = Review.create(rating: 4.0, content: "Good movie", video: futurama)
     review2 = Review.create(rating: 3.0, content: "Fine movie", video: futurama)
-    expect(futurama.average_rating).to eq("Rating: 3.5/5.0")
+    expect(futurama.average_rating).to eq(3.5)
   end 
 end 
