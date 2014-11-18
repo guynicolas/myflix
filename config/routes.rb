@@ -8,8 +8,9 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
   end 
   resources :categories, only: [:index, :show]
-  resources :queue_items, only: [:create]
-
+  resources :queue_items, only: [:create, :destroy]
+  
+  post 'update_queue', to: 'queue_items#update_queue'
   get 'my_queue',   to: 'queue_items#index'
 
   get 'ui(/:action)', controller: 'ui'
