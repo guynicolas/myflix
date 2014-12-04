@@ -1,8 +1,7 @@
 %article.video_category
   - @categories.each do |category| 
     %header 
-      %h3
-        = category.name 
+      %h3= category.name 
     .videos.row 
       - category.recent_videos.each do |video| 
         .video.col-sm-2

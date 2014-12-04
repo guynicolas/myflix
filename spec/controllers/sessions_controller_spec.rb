@@ -40,7 +40,7 @@ describe SessionsController do
         expect(session[:user_id]).to be_nil
       end 
       it 'sets the error' do 
-        expect(flash[:error]).to_not be_blank
+        expect(flash[:danger]).to_not be_blank
       end 
       it 'redirects to sign in page' do 
         expect(response).to redirect_to sign_in_path
