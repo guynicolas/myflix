@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       handle_invitation
-      Usermailer.send_welcome_email(@user)
+      Usermailer.send_welcome_email(@user).deliver 
       redirect_to sign_in_path
     else 
       render :new
