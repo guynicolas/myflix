@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end 
   end
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by slug: params[:id]
   end
 
   def new_with_invitation_token 

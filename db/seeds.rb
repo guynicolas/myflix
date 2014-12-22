@@ -13,9 +13,3 @@ futurama =    Video.create(title: 'Futurama',   description: 'Space Travel.',   
 family_guy =  Video.create(title: 'Family Guy', description: 'Peter Griffin and talking dog',   small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
 monk =        Video.create(title: 'Monk',       description: 'Paranoid SF detective',           small_cover_url: '/tmp/monk.jpg',       large_cover_url: '/tmp/monk_large.jpg', category_id: comedies.id)
 south_path =  Video.create(title: 'South Park', description: 'Hippie kids',                     small_cover_url: '/tmp/south_park.jpg', large_cover_url: '/tmp/monk_large.jpg', category_id: dramas.id)
-
-joe = User.create(email: 'joe@example.com', password: 'password', full_name: "Joe Klein")
-andy = User.create(email: 'andy@example.com', password: "password", full_name: "Andy Carson")
-mike = User.create(email: 'mike@example.com', password: "password", full_name: "Mike Brown")
-Review.create(user: joe, video: futurama, rating: 5, content: "This is an awesome movie!")
-Review.create(user: andy, video: futurama, rating: 1, content: "This movie is crap :(")
