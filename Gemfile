@@ -10,6 +10,8 @@ gem 'bcrypt'
 gem 'fabrication'
 gem 'faker'
 gem 'autoprefixer-rails'
+gem 'sidekiq'
+gem 'paratrooper'
 
 group :assets do 
 gem 'sass-rails'
@@ -32,9 +34,16 @@ end
 group :test do
   gem 'database_cleaner', '1.2.0'
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'capybara-email'
 end
-
+ 
 group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+group :development do 
+  gem 'letter_opener'
+end 

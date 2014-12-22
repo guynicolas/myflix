@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] =  "You are signed in, Welcome!"
+      flash[:notice] =  "Welcome to MyFlix, #{user.full_name}!"
       redirect_to home_path
     else 
-      flash[:error] = "Invalid email or password"
+      flash[:danger] = "Invalid email or password"
       redirect_to sign_in_path
     end 
   end 

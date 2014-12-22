@@ -13,6 +13,7 @@ describe CategoriesController do
       expect(response).to render_template :index 
     end 
   end 
+
   describe "GET show" do 
     it 'sets @category variable' do 
       category = Category.create(name: "Comedies")
