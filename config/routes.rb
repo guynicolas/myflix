@@ -8,6 +8,10 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
   end 
 
+  namespace :admin do 
+    resources :videos, only: [:new, :create]
+  end 
+
   get "people", to: "relationships#index"
   resources :relationships, only: [:create, :destroy]
 
@@ -32,5 +36,6 @@ Myflix::Application.routes.draw do
   get "expired_token" , to: "pages#expired_token"
 
   resources :invitations, only: [:new, :create]
+
 end
   

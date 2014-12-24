@@ -6,7 +6,7 @@ class QueueItemsController < ApplicationController
   end 
 
   def create
-    video = Video.find(params[:video_id])
+    video = Video.find_by slug: params[:video_id]
     queue_video(video)
     redirect_to my_queue_path
   end

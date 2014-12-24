@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     self.slug = self.full_name.gsub(' ', '-').downcase
   end
 
+  def admin?
+    self.admin == true
+  end
+
   def normalize_queue_item_position 
     queue_items.each_with_index do |queue_item, index|
       queue_item.update_attributes(position: index + 1) 

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby "2.1.1"
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'rails', '4.1.1'
@@ -12,6 +12,8 @@ gem 'faker'
 gem 'autoprefixer-rails'
 gem 'sidekiq'
 gem 'paratrooper'
+gem 'carrierwave' 
+gem 'mini_magick'
 
 group :assets do 
 gem 'sass-rails'
