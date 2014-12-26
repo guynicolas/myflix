@@ -10,17 +10,17 @@ class User < ActiveRecord::Base
 
   has_secure_password validations: false 
 
-  before_save :generate_slug!
+  #before_save :generate_slug!
 
   include Tokenable
   
-  def to_param
-    self.slug
-  end
+  # def to_param
+  #   self.slug
+  # end
 
-  def generate_slug!
-    self.slug = self.full_name.gsub(' ', '-').downcase
-  end
+  # def generate_slug!
+  #   self.slug = self.full_name.gsub(' ', '-').downcase
+  # end
 
   def admin?
     self.admin == true
