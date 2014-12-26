@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end 
   end
   def show
-    @user = User.find_by slug: params[:id]
+    @user = User.find(params[:id])
   end
 
   def new_with_invitation_token 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params.require(:user).permit(:email, :password, :full_name)
+    params.require(:user).permit(:email, :password, :full_name, :slug, :token)
   end
 
   def handle_invitation 

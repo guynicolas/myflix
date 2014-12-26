@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    leader = User.find_by slug: params[:leader_id]
+    leader = User.find(params[:leader_id])
     Relationship.create(leader_id: params[:leader_id], follower: current_user) if current_user.can_follow?(leader) 
     redirect_to people_path
   end

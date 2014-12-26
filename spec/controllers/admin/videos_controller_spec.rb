@@ -11,10 +11,8 @@ describe Admin::VideosController do
       expect(assigns(:video)).to be_new_record
       expect(assigns(:video)).to be_instance_of Video 
     end 
-    it "redirects regular users to home path" do 
-      set_current_user
-      get :new
-      expect(response).to redirect_to home_path
+    it_behaves_like "requires admin" do 
+      let(:action) { post :new }
     end 
     it "sets a flahsh error message for regular user" do 
       set_current_user

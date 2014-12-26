@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @video = Video.find_by slug: params[:id]
+    @video = Video.find(params[:id])
     @reviews = @video.reviews
   end
 
