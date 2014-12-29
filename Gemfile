@@ -16,6 +16,7 @@ gem 'mini_magick'
 gem 'stripe'
 gem 'figaro'
 gem 'fog'
+gem 'redis', '~> 3.2.0'
 
 group :assets do 
 gem 'sass-rails'

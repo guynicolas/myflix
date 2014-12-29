@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       handle_invitation
-      Usermailer.send_welcome_email(@user).deliver 
+      charge_with_stripe
+      Usermailer.delay.send_welcome_email(@user)
       redirect_to sign_in_path
       flash[:success] = "Welcome to MyFLix."
     else 
@@ -47,5 +48,15 @@ class UsersController < ApplicationController
       invitation.inviter.follow(@user)
       invitation.update_column(:token, nil)
     end     
+  end
+
+  def charge_with_stripe
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    Stripe::Charge.create(
+      :amount => 999,
+      :currency => "usd",
+      :card => params[:stripeToken],
+      :description => "Sign Up Charge for #{@user.email}"
+    )
   end
 end  

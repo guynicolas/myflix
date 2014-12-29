@@ -8,7 +8,7 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params.merge!(inviter_id: current_user.id))
     if @invitation.save
-      Usermailer.send_invitation_email(@invitation).deliver 
+      Usermailer.delay.send_invitation_email(@invitation)
       flash[:success] = "You have successfully invited #{@invitation.recipient_name} to join MyFLix" 
       redirect_to new_invitation_path 
     else 
