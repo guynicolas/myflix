@@ -12,10 +12,13 @@ class UsersController < ApplicationController
       handle_invitation
       Usermailer.send_welcome_email(@user).deliver 
       redirect_to sign_in_path
+      flash[:success] = "Welcome to MyFLix."
     else 
+      flash[:danger] = "You are enable to register. Correct the errors and try again."
       render :new
     end 
   end
+
   def show
     @user = User.find(params[:id])
   end

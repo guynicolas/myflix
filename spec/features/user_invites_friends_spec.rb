@@ -19,7 +19,7 @@ feature "user invites friends" do
     current_email.click_link("Accept this invitation")
 
     fill_in "Password", with: "password"
-    fill_in "Full Name", with: "Ben Carson"
+    fill_in "Full name", with: "Ben Carson"
     click_button "Sign Up"
   
 

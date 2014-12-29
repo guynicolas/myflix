@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
 
 gem 'rails', '4.1.1'
 gem 'haml-rails'
@@ -14,6 +13,9 @@ gem 'sidekiq'
 gem 'paratrooper'
 gem 'carrierwave' 
 gem 'mini_magick'
+gem 'stripe'
+gem 'figaro'
+gem 'fog'
 
 group :assets do 
 gem 'sass-rails'
