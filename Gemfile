@@ -17,6 +17,7 @@ gem 'stripe'
 gem 'figaro'
 gem 'fog'
 gem 'redis', '~> 3.2.0'
+gem 'draper'
 
 group :assets do 
 gem 'sass-rails'
@@ -33,15 +34,19 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '2.99'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'database_cleaner', '1.2.0'
+  gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'launchy'
   gem 'capybara-email'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
 end
  
 group :production do

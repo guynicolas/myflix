@@ -8,14 +8,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      handle_invitation
-      charge_with_stripe
-      Usermailer.delay.send_welcome_email(@user)
-      redirect_to sign_in_path
+    result = UserSignup.new(@user).sign_up(params[:stripeToken], params[:invitation_token])
+    if result.successful? 
       flash[:success] = "Welcome to MyFLix."
+      redirect_to sign_in_path
     else 
-      flash[:danger] = "You are enable to register. Correct the errors and try again."
+      flash[:danger] = result.error_message
       render :new
     end 
   end
@@ -40,23 +38,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password, :full_name, :slug, :token)
   end
-
-  def handle_invitation 
-    if params[:invitation_token].present? 
-      invitation = Invitation.where(token: params[:invitation_token]).first
-      @user.follow(invitation.inviter)
-      invitation.inviter.follow(@user)
-      invitation.update_column(:token, nil)
-    end     
-  end
-
-  def charge_with_stripe
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-    Stripe::Charge.create(
-      :amount => 999,
-      :currency => "usd",
-      :card => params[:stripeToken],
-      :description => "Sign Up Charge for #{@user.email}"
-    )
-  end
-end  
+end

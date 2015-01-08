@@ -7,64 +7,31 @@ describe UsersController do
       expect(assigns(:user)).to be_instance_of(User)
     end 
   end 
+
   describe 'POST create' do 
-    context 'for valid inputs' do 
-      before do 
-        post :create, user: Fabricate.attributes_for(:user)
-      end 
-      after { ActionMailer::Base.deliveries.clear}
-      it 'sets @user' do 
-        expect(User.count).to eq(1)
-      end 
+    context 'successful suer sign up' do 
       it 'redirects to sign in page' do 
+        result = double(:sign_up_result, successful?: true)
+        UserSignup.any_instance.should_receive(:sign_up).and_return(result)
+        post :create, user: {email: "andy@example.com", password: "password", full_name: "Andy Carson"}
         expect(response).to redirect_to sign_in_path
       end 
-      it "sends out a welcome email to the user" do 
-        post :create, user: {email: "andy@example.com", password: "password", full_name: "Andy Carson"}
-        expect(ActionMailer::Base.deliveries.last.to).to eq(["andy@example.com"])
-      end 
-      it "sends out a welcome email containing the user's name" do 
-        post :create, user: {email: "andy@example.com", password: "password", full_name: "Andy Carson"}
-        expect(ActionMailer::Base.deliveries.last.body).to include("Andy Carson")
-      end 
-
-      it "makes the user follow the inviter" do 
-        andy = Fabricate(:user)
-        invitation = Invitation.create(inviter: andy, recipient_name: "Joe Smith", recipient_email: "joe@example.com", token: '12345')
-        post :create, user: {email: "joe@example.com", password: "password", full_name: "Joe Smith"}, invitation_token: invitation.token
-        joe = User.where(email: "joe@example.com").first
-         expect(joe.follows?(andy)).to be_truthy  
-      end
-      it "makes the inviter follow the user" do 
-        andy = Fabricate(:user)
-        invitation = Invitation.create(inviter: andy, recipient_name: "Joe Smith", recipient_email: "joe@example.com", token: '12345')
-        post :create, user: {email: "joe@example.com", password: "password", full_name: "Joe Smith"}, invitation_token: invitation.token
-        joe = User.where(email: "joe@example.com").first
-        expect(andy.follows?(joe)).to be_truthy   
-      end 
-      it "expires the invitation token upon acceptance" do 
-        andy = Fabricate(:user)
-        invitation = Invitation.create(inviter: andy, recipient_name: "Joe Smith", recipient_email: "joe@example.com", token: '12345')
-        post :create, user: {email: "joe@example.com", password: "password", full_name: "Joe Smith"}, invitation_token: invitation.token
-        joe = User.where(email: "joe@example.com").first
-        expect(Invitation.first.token).to be_nil  
-      end 
     end 
-    context 'for invalid inputs' do 
-      before do 
-        post :create, user: {email: 'joe@example.com', password: 'password'}
-      end 
-      it 'does not set @user' do 
-        expect(User.count).to eq(0)
-      end 
-      it 'renders the new template' do 
+
+    context "unsuccessful user sign up" do 
+      it "renders the new template" do 
+        result = double(:sign_up_result, successful?: false, error_message: "This is an error message.")
+        UserSignup.any_instance.should_receive(:sign_up).and_return(result)
+        post :create, user: {email: "andy@example.com", password: "password", full_name: "Andy Carson"}, stripeToken: "12341234"
         expect(response).to render_template :new
       end 
-      it "does not send out welcome email" do 
-        post :create, user: {email: "andy@example.com", password: "password"}
-        expect(ActionMailer::Base.deliveries).to be_empty
-      end
-    end 
+      it "sets an error message" do 
+        result = double(:sign_up_result, successful?: false, error_message: "This is an error message.")
+        UserSignup.any_instance.should_receive(:sign_up).and_return(result)
+        post :create, user: {email: "andy@example.com", password: "password", full_name: "Andy Carson"}, stripeToken: "12341234"
+        expect(flash[:danger]).to be_present
+      end 
+    end
   end 
 
   describe "GET show" do 
